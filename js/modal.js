@@ -46,7 +46,7 @@ document.getElementById("btn-submit").addEventListener("click", submitForm);
 
 // Function to submit the form
 function submitForm() {
-  if (checkFirstName() === true && checkLastName() ===true && checkEmail() ===true) {
+  if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true) {
     console.log("Submit ok");
   } else {
     console.log("Submit ko");
@@ -55,55 +55,51 @@ function submitForm() {
 
 // Check first name > 2 characters
 function checkFirstName() {
-  // let first = document.getElementById("first");
   first = String(first);
   if (first.trim() === '') {
-    console.log(false);
+    console.log("firstFalse");
     return false;
   } else if (first.length < 2) {
-    console.log(false);
+    console.log("firstFalse");
     return false;
   } else {
-    console.log(true);
+    console.log("firstTrue");
     return true;
   }
 }
 
 // Check last name > 2 characters
 function checkLastName() {
-  // let last = document.getElementById("last");
   last = String(last);
   if (last.trim() === '') {
-    console.log(false);
+    console.log("lastFalse");
     return false;
   } else if (last.length < 2) {
-    console.log(false);
+    console.log("lastFalse");
     return false;
   } else {
-    console.log(true);
+    console.log("lastTrue");
     return true;
   }
 }
 
 // Check email
 function checkEmail() {
-  // let email = document.getElementById("email");
   let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   console.log(regex.test(email));
   return regex.test(email);
 }
 
-// Check birthdate
-function checkBirthdate() {
-
-}
-
 // Check quantity
 function checkQuantity() {
-  // let quantity = document.getElementById("quantity");
   let regex = /^\d+$/;
   console.log(regex.test(quantity));
   return regex.test(quantity);
+}
+
+// Check birthdate
+function checkBirthdate() {
+
 }
 
 // Check city
