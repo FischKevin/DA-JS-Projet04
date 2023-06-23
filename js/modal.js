@@ -41,6 +41,8 @@ const city = document.getElementsByName("location");
 const checkbox1 = document.getElementById("checkbox1");
 const submitButton = document.getElementById("btn-submit");
 
+const regexFirstnameAndLastname = /^.{2,}$/;
+
 // Event listener on submit form button
 document.getElementById("btn-submit").addEventListener("click", submitForm); 
 
@@ -56,31 +58,15 @@ function submitForm() {
 // Check first name > 2 characters
 function checkFirstName() {
   const first = firstName.value;
-  if (first.trim() === '') {
-    console.log("firstFalse");
-    return false;
-  } else if (first.length < 2) {
-    console.log("firstFalse");
-    return false;
-  } else {
-    console.log("firstTrue");
-    return true;
-  }
+  console.log(regexFirstnameAndLastname.test(first));
+  return regexFirstnameAndLastname.test(first);
 }
 
 // Check last name > 2 characters
 function checkLastName() {
   const last = lastName.value;
-  if (last.trim() === '') {
-    console.log("lastFalse");
-    return false;
-  } else if (last.length < 2) {
-    console.log("lastFalse");
-    return false;
-  } else {
-    console.log("lastTrue");
-    return true;
-  }
+  console.log(regexFirstnameAndLastname.test(last));
+  return regexFirstnameAndLastname.test(last);
 }
 
 // Check email
