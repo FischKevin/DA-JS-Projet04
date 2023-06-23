@@ -55,7 +55,7 @@ function submitForm() {
 
 // Check first name > 2 characters
 function checkFirstName() {
-  first = String(first);
+  const first = firstName.value;
   if (first.trim() === '') {
     console.log("firstFalse");
     return false;
@@ -70,7 +70,7 @@ function checkFirstName() {
 
 // Check last name > 2 characters
 function checkLastName() {
-  last = String(last);
+  const last = lastName.value;
   if (last.trim() === '') {
     console.log("lastFalse");
     return false;
