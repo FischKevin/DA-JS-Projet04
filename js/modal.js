@@ -39,7 +39,6 @@ const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const city = document.getElementsByName("location");
 const checkbox1 = document.getElementById("checkbox1");
-const submitButton = document.getElementById("btn-submit");
 
 // Regex to veriy :
 // - firstname and lastname
@@ -48,13 +47,12 @@ const regexFirstnameAndLastname = /^.{2,}$/;
 const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 // - GameOn events quantity 
 const regexQuantity = /^\d+$/;
+// - birthdate
+const regexBirthdate = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
 
-// Event listener on submit form button
-document.getElementById("btn-submit").addEventListener("click", submitForm); 
-
-// Function to submit the form
-function submitForm() {
-  if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true) {
+// Function to validate the form
+function validate() {
+  if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true && checkBirthdate() === true) {
     console.log("Submit ok");
   } else {
     console.log("Submit ko");
@@ -64,34 +62,33 @@ function submitForm() {
 // Check first name > 2 characters
 function checkFirstName() {
   const firstNameInput = firstName.value;
-  console.log(regexFirstnameAndLastname.test(firstNameInput));
   return regexFirstnameAndLastname.test(firstNameInput);
 }
 
 // Check last name > 2 characters
 function checkLastName() {
   const lastNameInput = lastName.value;
-  console.log(regexFirstnameAndLastname.test(lastNameInput));
   return regexFirstnameAndLastname.test(lastNameInput);
 }
 
 // Check email
 function checkEmail() {
   const emailInput = email.value;
-  console.log(regexEmail.test(emailInput));
   return regexEmail.test(emailInput);
 }
 
 // Check quantity
 function checkQuantity() {
   const quantityInput = quantity.value;
-  console.log(regexQuantity.test(quantityInput));
   return regexQuantity.test(quantityInput);
 }
 
 // Check birthdate
 function checkBirthdate() {
-
+ const birthdateInput = birthdate.toLocaleString("fr").value;
+//  const birthdateInput = birthdate.value;
+ console.log(birthdateInput);
+ return regexBirthdate.test(birthdateInput);
 }
 
 // Check city
@@ -104,8 +101,7 @@ function checkCheckbox1() {
 
 }
 
-
-// Function validate
-function validate() {
+// Check checkbox2
+function checkCheckbox2() {
 
 }
