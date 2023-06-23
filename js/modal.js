@@ -41,7 +41,13 @@ const city = document.getElementsByName("location");
 const checkbox1 = document.getElementById("checkbox1");
 const submitButton = document.getElementById("btn-submit");
 
+// Regex to veriy :
+// - firstname and lastname
 const regexFirstnameAndLastname = /^.{2,}$/;
+// - email RFC2822
+const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+// - GameOn events quantity 
+const regexQuantity = /^\d+$/;
 
 // Event listener on submit form button
 document.getElementById("btn-submit").addEventListener("click", submitForm); 
@@ -57,30 +63,30 @@ function submitForm() {
 
 // Check first name > 2 characters
 function checkFirstName() {
-  const first = firstName.value;
-  console.log(regexFirstnameAndLastname.test(first));
-  return regexFirstnameAndLastname.test(first);
+  const firstNameInput = firstName.value;
+  console.log(regexFirstnameAndLastname.test(firstNameInput));
+  return regexFirstnameAndLastname.test(firstNameInput);
 }
 
 // Check last name > 2 characters
 function checkLastName() {
-  const last = lastName.value;
-  console.log(regexFirstnameAndLastname.test(last));
-  return regexFirstnameAndLastname.test(last);
+  const lastNameInput = lastName.value;
+  console.log(regexFirstnameAndLastname.test(lastNameInput));
+  return regexFirstnameAndLastname.test(lastNameInput);
 }
 
 // Check email
 function checkEmail() {
-  let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  console.log(regex.test(email));
-  return regex.test(email);
+  const emailInput = email.value;
+  console.log(regexEmail.test(emailInput));
+  return regexEmail.test(emailInput);
 }
 
 // Check quantity
 function checkQuantity() {
-  let regex = /^\d+$/;
-  console.log(regex.test(quantity));
-  return regex.test(quantity);
+  const quantityInput = quantity.value;
+  console.log(regexQuantity.test(quantityInput));
+  return regexQuantity.test(quantityInput);
 }
 
 // Check birthdate
