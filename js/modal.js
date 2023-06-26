@@ -85,7 +85,7 @@ function checkQuantity() {
 
 // Check birthdate
 function checkBirthdate() {
- const birthdateInput = birthdate.toLocaleString("fr").value;
+//  const birthdateInput = birthdate.toLocaleString("fr");
 //  const birthdateInput = birthdate.value;
  console.log(birthdateInput);
  return regexBirthdate.test(birthdateInput);

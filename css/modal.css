@@ -485,9 +485,14 @@ input[data-error]::after {
   display: flex;
 }
 .hero-headline {
-  font-size: 9vw;
+  font-size: 120px;
   font-weight: normal;
   white-space: nowrap;
+}
+@media screen and (max-width: 1440px) {
+  .hero-headline {
+    font-size: 9vw;
+  }
 }
 .hero-text {
   width: 100%;
