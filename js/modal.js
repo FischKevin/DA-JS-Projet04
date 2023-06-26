@@ -37,7 +37,7 @@ const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const city = document.getElementsByName("location");
+// const tournamentLocation = document.getElementsById("formLocation");
 const checkbox1 = document.getElementById("checkbox1");
 
 // Regex to veriy :
@@ -52,7 +52,7 @@ const regexBirthdateYYYMMDD = /^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[0
 
 // Function to validate the form
 function validate() {
-  if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true && checkBirthdate() === true) {
+  if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true && checkBirthdate() === true && checkLocation() === true) {
     console.log("Submit ok");
   } else {
     console.log("Submit ko");
@@ -89,14 +89,15 @@ function checkBirthdate() {
   return regexBirthdateYYYMMDD.test(birthdateInput);
 }
 
-// Check city
-function checkCity() {
-
-}
-
-// Check checkbox1
-function checkCheckbox1() {
-
+// Check location
+function checkLocation() {
+  const locationInput = document.getElementsByName("location");
+  let i = 0;
+    if (locationInput[i].checked) {
+    return true;
+    } else {
+      return false;
+    }
 }
 
 // Check checkbox2
