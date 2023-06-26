@@ -48,7 +48,7 @@ const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]
 // - GameOn events quantity 
 const regexQuantity = /^\d+$/;
 // - birthdate
-const regexBirthdate = /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/;
+const regexBirthdateYYYMMDD = /^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
 // Function to validate the form
 function validate() {
@@ -85,10 +85,8 @@ function checkQuantity() {
 
 // Check birthdate
 function checkBirthdate() {
-//  const birthdateInput = birthdate.toLocaleString("fr");
-//  const birthdateInput = birthdate.value;
- console.log(birthdateInput);
- return regexBirthdate.test(birthdateInput);
+  const birthdateInput = birthdate.value;
+  return regexBirthdateYYYMMDD.test(birthdateInput);
 }
 
 // Check city
