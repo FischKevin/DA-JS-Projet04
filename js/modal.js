@@ -39,6 +39,7 @@ const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 // const tournamentLocation = document.getElementsById("formLocation");
 const checkbox1 = document.getElementById("checkbox1");
+const submitButton = document.getElementById("btn-submit");
 
 // Regex to veriy :
 // - firstname and lastname
@@ -52,11 +53,17 @@ const regexBirthdateYYYMMDD = /^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[0
 
 // Function to validate the form
 function validate() {
-  if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true && checkBirthdate() === true && checkLocation() === true) {
-    console.log("Submit ok");
+  const checkbox1 = document.getElementById(checkbox1);
+  if (checkbox1.checked) {
+    if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true && checkBirthdate() === true && checkLocation() === true) {
+      console.log("Submit ok");
+    } else {
+      console.log("Submit ko");
+    }
   } else {
     console.log("Submit ko");
   }
+
 }
 
 // Check first name > 2 characters
@@ -97,10 +104,17 @@ function checkLocation() {
     return true;
     } else {
       return false;
-    }
+  }
 }
 
-// Check checkbox2
-function checkCheckbox2() {
+// Event listener on checkbox1
+checkbox1.addEventListener("click", disableSubmitButtonIfCheckbox1NotChecked);
 
+// Disable submit button if checkbox1 is not checked
+function disableSubmitButtonIfCheckbox1NotChecked() {
+  if (checkbox1.checked) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
 }

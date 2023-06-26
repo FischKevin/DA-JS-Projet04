@@ -377,6 +377,9 @@ input[data-error]::after {
   border: 0;
   min-width: max-content;
 }
+.btn-submit:disabled {
+  background: grey;
+}
 /* custom select styles */
 .custom-select {
   position: relative;
