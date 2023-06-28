@@ -380,6 +380,7 @@ input[data-error]::after {
 }
 .btn-submit:disabled {
   background: grey;
+  cursor: default;
 }
 /* custom select styles */
 .custom-select {
