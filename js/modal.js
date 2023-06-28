@@ -14,6 +14,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const modalCloseBtn = document.querySelectorAll(".close");
 const modalSubmitBtn = document.querySelectorAll(".btn-submit");
 const modalbgConfirm = document.querySelector(".bground-confirm");
+const modalConfirmCloseBtn = document.querySelectorAll(".close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -27,6 +28,7 @@ function launchModal() {
 function launchConfirmModal() {
   console.log("launchConfirmModal OK");
   modalbgConfirm.style.display = "block";
+  // modalbg.style.display = "none";
 }
 
 // Close modal event
@@ -35,6 +37,14 @@ modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 // Close modal
 function closeModal() {
   modalbg.style.display = "none";
+}
+
+// Close modal confirm event
+modalConfirmCloseBtn.forEach((btn) => btn.addEventListener("click", closeConfirmModal));
+
+// Close modal
+function closeConfirmModal() {
+  modalbgConfirm.style.display = "none";
 }
 
 // -----------------------------------------------------------------
@@ -75,7 +85,7 @@ function validate(e) {
   }
 }
 
-document.getElementsByName('reserve')[0].onsubmit = validate
+document.getElementsByName('reserve')[0].onsubmit = validate;
 
 // Check first name > 2 characters
 function checkFirstName() {
