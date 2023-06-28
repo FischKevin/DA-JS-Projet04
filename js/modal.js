@@ -10,8 +10,10 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
+// const formData = document.querySelectorAll(".formData");
 const modalCloseBtn = document.querySelectorAll(".close");
+const modalSubmitBtn = document.querySelectorAll(".btn-submit");
+const modalbgConfirm = document.querySelector(".bground-confirm");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -19,6 +21,12 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+}
+
+// launch modal form
+function launchConfirmModal() {
+  console.log("launchConfirmModal OK");
+  modalbgConfirm.style.display = "block";
 }
 
 // Close modal event
@@ -37,7 +45,6 @@ const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-// const tournamentLocation = document.getElementsById("formLocation");
 const checkbox1 = document.getElementById("checkbox1");
 const submitButton = document.getElementById("btn-submit");
 
@@ -51,20 +58,24 @@ const regexQuantity = /^\d+$/;
 // - birthdate
 const regexBirthdateYYYMMDD = /^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
+
+
 // Function to validate the form
-function validate() {
-  const checkbox1 = document.getElementById(checkbox1);
+function validate(e) {
+  e.preventDefault();
   if (checkbox1.checked) {
     if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true && checkBirthdate() === true && checkLocation() === true) {
       console.log("Submit ok");
+      launchConfirmModal();
     } else {
       console.log("Submit ko");
     }
   } else {
     console.log("Submit ko");
   }
-
 }
+
+document.getElementsByName('reserve')[0].onsubmit = validate
 
 // Check first name > 2 characters
 function checkFirstName() {
@@ -99,12 +110,12 @@ function checkBirthdate() {
 // Check location
 function checkLocation() {
   const locationInput = document.getElementsByName("location");
-  let i = 0;
+  for (let i = 0; i < locationInput.length; i++) {
     if (locationInput[i].checked) {
-    return true;
-    } else {
-      return false;
+      return true; 
+    }
   }
+  return false;
 }
 
 // Event listener on checkbox1
