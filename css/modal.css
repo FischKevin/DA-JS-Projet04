@@ -365,7 +365,8 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.btn-close {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -542,6 +543,36 @@ input[data-error]::after {
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
 }
+
+.bground-confirm > .content {
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  height: 750px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+}
+
+.modal-confirm-text {
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
+  padding: 0 80px;
+  position: relative;
+  top: 250px;
+}
+
+.btn-close {
+  top: 560px;
+  position: relative;
+}
+
 footer {
   margin: 0 20px;
 }
