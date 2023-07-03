@@ -25,6 +25,7 @@ const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const checkbox1 = document.getElementById("checkbox1");
 const submitButton = document.getElementById("btn-submit");
+const errorMessageFirstName = document.getElementById("error-message-firstname");
 
 // Regex declaration, to veriy :
 // - firstname and lastname
@@ -59,7 +60,6 @@ function launchConfirmModal() {
   modalbgConfirm.style.display = "block";
 }
 
-
 // Event listener creation for modal confirmation close buttons
 modalConfirmCloseBtn.forEach((btn) => btn.addEventListener("click", closeConfirmModal));
 modalConfirmCloseBottomBtn.addEventListener("click", closeConfirmModal);
@@ -74,7 +74,13 @@ function closeConfirmModal() {
 function validate(e) {
   e.preventDefault();
   if (checkbox1.checked) {
-    if (checkFirstName() === true && checkLastName() === true && checkEmail() === true && checkQuantity() === true && checkBirthdate() === true && checkLocation() === true) {
+    if (checkFirstName() === true && 
+        checkLastName() === true && 
+        checkEmail() === true && 
+        checkQuantity() === true && 
+        checkBirthdate() === true && 
+        checkLocation() === true
+      ) {
       console.log("Submit ok");
       launchConfirmModal();
     } else {
@@ -85,21 +91,39 @@ function validate(e) {
   }
 }
 
-// document.getElementsByName('reserve')[0].onsubmit = validate;
-
 // Check first name > 2 characters
 function checkFirstName() {
   const firstNameInput = firstName.value;
-  // const errorMessageFirstName = document.getElementById("error-message-firstname");
-  if (regexFirstnameAndLastname.test(firstNameInput)) {
-    return regexFirstnameAndLastname.test(firstNameInput);
+  const isValid = regexFirstnameAndLastname.test(firstNameInput);
+  if (isValid == true) {
+    clearErrorMessage();
   } else {
-    // errorMessageFirstName.setAttribute("data-error", true);
-    // errorMessageFirstName.classList.add("data-error");
-    firstName.setAttribute("data-error", true);
+    displayErrorMessage("Erreur : Prénom invalide");
     return regexFirstnameAndLastname.test(firstNameInput);
   }
+  return isValid;
 }
+
+
+function displayErrorMessage(message) {
+  errorMessageFirstName.textContent = message;
+  first.setAttribute("data-error", "true");
+}
+
+function clearErrorMessage() {
+  errorMessageFirstName.textContent = "";
+  first.removeAttribute("data-error");
+}
+
+// function displayErrorMessage() {
+//   if (checkFirstName() === false) {
+//     errorMessageFirstName.textContent = "Erreur : Prénom invalide";
+//     first.setAttribute("data-error", "true");
+//   } else {
+//     errorMessageFirstName.textContent = "";
+//     first.removeAttribute("data-error");
+//   }
+// }
 
 // Check last name > 2 characters
 function checkLastName() {
