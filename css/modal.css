@@ -200,6 +200,7 @@ main {
   font-size: 16px;
 }
 
+.bground-confirm,
 .bground {
   display: none;
   position: fixed;
@@ -252,7 +253,7 @@ input {
   height: 48px;
 }
 .formData[data-error]::after {
-  content: 'Data error' attr(data-error);
+  content: attr(data-error);
   font-size: 0.4em;
   color: #e54858;
   display: block;
@@ -533,16 +534,6 @@ input[data-error]::after {
 .hero-section > .btn-signup {
   display: none;
 }
-.bground-confirm {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-}
 
 .bground-confirm > .content {
   margin: 5% auto;
@@ -557,7 +548,7 @@ input[data-error]::after {
   position: relative;
   color: #fff;
   padding-top: 10px;
-}
+} 
 
 .modal-confirm-text {
   font-weight: 400;

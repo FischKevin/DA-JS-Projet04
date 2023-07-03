@@ -9,45 +9,13 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
+const modalBtn = document.querySelectorAll(".btn-signup");
 // const formData = document.querySelectorAll(".formData");
 const modalCloseBtn = document.querySelectorAll(".close");
 const modalSubmitBtn = document.querySelectorAll(".btn-submit");
 const modalbgConfirm = document.querySelector(".bground-confirm");
 const modalConfirmCloseBtn = document.querySelectorAll(".close");
-
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
-
-// launch modal form
-function launchConfirmModal() {
-  console.log("launchConfirmModal OK");
-  modalbgConfirm.style.display = "block";
-  // modalbg.style.display = "none";
-}
-
-// Close modal event
-modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
-
-// Close modal
-function closeModal() {
-  modalbg.style.display = "none";
-}
-
-// Close modal confirm event
-modalConfirmCloseBtn.forEach((btn) => btn.addEventListener("click", closeConfirmModal));
-
-// Close modal
-function closeConfirmModal() {
-  modalbgConfirm.style.display = "none";
-}
-
-// -----------------------------------------------------------------
+const modalConfirmCloseBottomBtn = document.getElementById("btn-close-confirm-modal");
 
 // Form elements
 const firstName = document.getElementById("first");
@@ -58,7 +26,7 @@ const quantity = document.getElementById("quantity");
 const checkbox1 = document.getElementById("checkbox1");
 const submitButton = document.getElementById("btn-submit");
 
-// Regex to veriy :
+// Regex declaration, to veriy :
 // - firstname and lastname
 const regexFirstnameAndLastname = /^.{2,}$/;
 // - email RFC2822
@@ -69,6 +37,38 @@ const regexQuantity = /^\d+$/;
 const regexBirthdateYYYMMDD = /^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
 
+// Event listener creation for Modal Form Opener Button
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+// Function to open Modal Form
+function launchModal() {
+  modalbg.style.display = "block";
+}
+
+// Event listener creation for Modal Form X Close Button
+modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
+// Function to close Modal Form
+function closeModal() {
+  modalbg.style.display = "none";
+}
+
+// Event listener creation for Modal Form Validation
+modalSubmitBtn.forEach((btn) => btn.addEventListener("click", validate));
+// Function to open Confirmation Modal
+function launchConfirmModal() {
+  closeModal();
+  modalbgConfirm.style.display = "block";
+}
+
+
+// Event listener creation for modal confirmation close buttons
+modalConfirmCloseBtn.forEach((btn) => btn.addEventListener("click", closeConfirmModal));
+modalConfirmCloseBottomBtn.addEventListener("click", closeConfirmModal);
+// Function to Close modal
+function closeConfirmModal() {
+  modalbgConfirm.style.display = "none";
+}
+
+// -----------------------------------------------------------------
 
 // Function to validate the form
 function validate(e) {
@@ -85,12 +85,20 @@ function validate(e) {
   }
 }
 
-document.getElementsByName('reserve')[0].onsubmit = validate;
+// document.getElementsByName('reserve')[0].onsubmit = validate;
 
 // Check first name > 2 characters
 function checkFirstName() {
   const firstNameInput = firstName.value;
-  return regexFirstnameAndLastname.test(firstNameInput);
+  // const errorMessageFirstName = document.getElementById("error-message-firstname");
+  if (regexFirstnameAndLastname.test(firstNameInput)) {
+    return regexFirstnameAndLastname.test(firstNameInput);
+  } else {
+    // errorMessageFirstName.setAttribute("data-error", true);
+    // errorMessageFirstName.classList.add("data-error");
+    firstName.setAttribute("data-error", true);
+    return regexFirstnameAndLastname.test(firstNameInput);
+  }
 }
 
 // Check last name > 2 characters
