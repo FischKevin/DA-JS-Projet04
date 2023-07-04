@@ -212,9 +212,15 @@ main {
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
 }
+@media screen and (max-width: 500px) {
+  .bground-confirm,
+  .bground {
+    background-color: transparent;
+  } 
+}
 
 .content {
-  margin: 5% auto;
+  margin: 70px auto auto auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -225,6 +231,11 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+}
+@media screen and (max-width: 500px) {
+  .bground > .content {
+    height: 100%;
+  } 
 }
 
 .modal-body {
@@ -252,7 +263,7 @@ input {
   font-size: 20px;
   height: 48px;
 }
-.formData[data-error]::after {
+.formData::after {
   content: attr(data-error);
   font-size: 0.4em;
   color: #e54858;
@@ -270,12 +281,12 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
+
+input[data-error="true"]::after {
     content: attr(data-error);
     font-size: 0.4em;
     color: red;
-} */
+}
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -536,7 +547,7 @@ input[data-error]::after {
 }
 
 .bground-confirm > .content {
-  margin: 5% auto;
+  margin: 70px auto auto auto;
   width: 100%;
   max-width: 500px;
   height: 750px;
@@ -549,6 +560,11 @@ input[data-error]::after {
   color: #fff;
   padding-top: 10px;
 } 
+@media screen and (max-width: 500px) {
+  .bground-confirm > .content {
+    height: 100%;
+  } 
+}
 
 .modal-confirm-text {
   font-weight: 400;

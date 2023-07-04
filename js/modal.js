@@ -10,7 +10,7 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".btn-signup");
-// const formData = document.querySelectorAll(".formData");
+const formData = document.querySelectorAll(".formData");
 const modalCloseBtn = document.querySelectorAll(".close");
 const modalSubmitBtn = document.querySelectorAll(".btn-submit");
 const modalbgConfirm = document.querySelector(".bground-confirm");
@@ -26,6 +26,8 @@ const quantity = document.getElementById("quantity");
 const checkbox1 = document.getElementById("checkbox1");
 const submitButton = document.getElementById("btn-submit");
 const errorMessageFirstName = document.getElementById("error-message-firstname");
+const dataError = document.querySelectorAll(".data-error");
+const textControl = document.querySelectorAll(".text-control");
 
 // Regex declaration, to veriy :
 // - firstname and lastname
@@ -37,12 +39,29 @@ const regexQuantity = /^\d+$/;
 // - birthdate
 const regexBirthdateYYYMMDD = /^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
+// Event listener creation for checkbox1
+checkbox1.addEventListener("click", disableSubmitButtonIfCheckbox1NotChecked);
+// Disable submit button if checkbox1 is not checked
+function disableSubmitButtonIfCheckbox1NotChecked() {
+  if (checkbox1.checked) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+}
+
+// Function to initialize form fields
+function initForm() {
+  checkbox1.checked = true;
+  disableSubmitButtonIfCheckbox1NotChecked();
+}
 
 // Event listener creation for Modal Form Opener Button
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // Function to open Modal Form
 function launchModal() {
   modalbg.style.display = "block";
+  initForm();
 }
 
 // Event listener creation for Modal Form X Close Button
@@ -73,7 +92,6 @@ function closeConfirmModal() {
 // Function to validate the form
 function validate(e) {
   e.preventDefault();
-  if (checkbox1.checked) {
     if (checkFirstName() === true && 
         checkLastName() === true && 
         checkEmail() === true && 
@@ -85,9 +103,6 @@ function validate(e) {
       launchConfirmModal();
     } else {
       console.log("Submit ko");
-    }
-  } else {
-    console.log("Submit ko");
   }
 }
 
@@ -98,32 +113,25 @@ function checkFirstName() {
   if (isValid == true) {
     clearErrorMessage();
   } else {
-    displayErrorMessage("Erreur : Prénom invalide");
+    displayErrorMessage("Veuillez saisir au moins 2 caractères");
     return regexFirstnameAndLastname.test(firstNameInput);
   }
   return isValid;
 }
 
-
 function displayErrorMessage(message) {
   errorMessageFirstName.textContent = message;
   first.setAttribute("data-error", "true");
+  textControl.forEach((element) => {
+    element.setAttribute("data-error", "true");
+  });
 }
 
 function clearErrorMessage() {
   errorMessageFirstName.textContent = "";
+  first.parentElement.classList.remove("formData");
   first.removeAttribute("data-error");
 }
-
-// function displayErrorMessage() {
-//   if (checkFirstName() === false) {
-//     errorMessageFirstName.textContent = "Erreur : Prénom invalide";
-//     first.setAttribute("data-error", "true");
-//   } else {
-//     errorMessageFirstName.textContent = "";
-//     first.removeAttribute("data-error");
-//   }
-// }
 
 // Check last name > 2 characters
 function checkLastName() {
@@ -158,16 +166,4 @@ function checkLocation() {
     }
   }
   return false;
-}
-
-// Event listener on checkbox1
-checkbox1.addEventListener("click", disableSubmitButtonIfCheckbox1NotChecked);
-
-// Disable submit button if checkbox1 is not checked
-function disableSubmitButtonIfCheckbox1NotChecked() {
-  if (checkbox1.checked) {
-    submitButton.disabled = false;
-  } else {
-    submitButton.disabled = true;
-  }
 }
