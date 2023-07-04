@@ -109,29 +109,68 @@ function validate(e) {
 // Check first name > 2 characters
 function checkFirstName() {
   const firstNameInput = firstName.value;
+  const formDataElement = formData[0];
   const isValid = regexFirstnameAndLastname.test(firstNameInput);
   if (isValid == true) {
-    clearErrorMessage();
+    formDataElement.setAttribute('data-error-visible', false);
   } else {
-    displayErrorMessage("Veuillez saisir au moins 2 caractères");
-    return regexFirstnameAndLastname.test(firstNameInput);
+    formDataElement.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
+    formDataElement.setAttribute('data-error-visible', true);
+    return false;
   }
   return isValid;
 }
 
-function displayErrorMessage(message) {
-  errorMessageFirstName.textContent = message;
-  first.setAttribute("data-error", "true");
-  textControl.forEach((element) => {
-    element.setAttribute("data-error", "true");
-  });
-}
+// // Ajout de l'erreur
+// const formPrenom = document.getElementById('formPrenom');
+// function ControlePrenom() {
+//   if (!validerNom(prenom.value)) {
+//     formPrenom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
+//     formPrenom.setAttribute('data-error-visible', true);
+//     //setCookie('Prénom', '', 1);
+//     return false;
+//   } else {
+//     formPrenom.setAttribute('data-error-visible', false);
+//     //setCookie('Prénom', prenom.value, 1);
+//     return true;
+//   };
+// };
 
-function clearErrorMessage() {
-  errorMessageFirstName.textContent = "";
-  first.parentElement.classList.remove("formData");
-  first.removeAttribute("data-error");
-}
+
+// function displayErrorMessage(message) {
+//   errorMessageFirstName.textContent = message;
+//   errorMessageFirstName.classList.add("error-message-visible");
+//   first.setAttribute("data-error", "true");
+//   textControl.forEach((element) => {
+//     element.setAttribute("data-error", "true");
+//   });
+// }
+
+// function clearErrorMessage() {
+//   errorMessageFirstName.textContent = "";
+//   first.parentElement.classList.remove("formData");
+//   first.removeAttribute("data-error");
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Check last name > 2 characters
 function checkLastName() {
