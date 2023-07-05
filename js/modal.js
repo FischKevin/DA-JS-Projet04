@@ -128,13 +128,13 @@ function checkFirstName() {
   return isValid;
 }
 
-
-
-
 // Check last name > 2 characters
 function checkLastName() {
   const lastNameInput = lastName.value;
-  return regexFirstnameAndLastname.test(lastNameInput);
+  formDataElement = formData[1];
+  isValid = regexFirstnameAndLastname.test(lastNameInput);
+  showErrorMessageIfCheckFunctionReturnsFalse();
+  return isValid;
 }
 
 // Check email
