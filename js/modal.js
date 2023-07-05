@@ -133,7 +133,7 @@ function validate(e) {
   } else {
     formData[4].setAttribute('data-error-visible', false);
   }
-  
+
   if (!checkLocation()) {
     showErrorMessageIfCheckFunctionReturnsFalse(checkLocation(), formData[5], "Veuillez sélectionner une ville");
     errorExists = true;
@@ -167,20 +167,14 @@ function showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, e
 
 function checkFirstName() {
   const firstNameInput = firstName.value;
-  // const formDataElement = formData[0];
   const isValid = regexFirstnameAndLastname.test(firstNameInput);
-  // const errorMessage = "Veuillez saisir 2 caractères minimum";
-  // showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, errorMessage);
   return isValid;
 }
 
 // Check last name > 2 characters
 function checkLastName() {
   const lastNameInput = lastName.value;
-  // const formDataElement = formData[1];
   const isValid = regexFirstnameAndLastname.test(lastNameInput);
-  // const errorMessage = "Veuillez saisir 2 caractères minimum";
-  // showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, errorMessage);
   return isValid;
 }
 
