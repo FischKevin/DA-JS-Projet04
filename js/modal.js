@@ -106,69 +106,42 @@ function validate(e) {
   }
 }
 
-// Check first name > 2 characters
+let isValid;
+let formDataElement;
+
 function checkFirstName() {
   const firstNameInput = firstName.value;
-  const formDataElement = formData[0];
-  const isValid = regexFirstnameAndLastname.test(firstNameInput);
-  if (isValid == true) {
-    formDataElement.setAttribute('data-error-visible', false);
-  } else {
-    formDataElement.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
-    formDataElement.setAttribute('data-error-visible', true);
-    return false;
-  }
+  formDataElement = formData[0];
+  isValid = regexFirstnameAndLastname.test(firstNameInput);
+  showErrorMessageIfCheckFunctionReturnsFalse();
   return isValid;
 }
 
-// // Ajout de l'erreur
-// const formPrenom = document.getElementById('formPrenom');
-// function ControlePrenom() {
-//   if (!validerNom(prenom.value)) {
-//     formPrenom.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
-//     formPrenom.setAttribute('data-error-visible', true);
-//     //setCookie('Prénom', '', 1);
-//     return false;
+// Function to show error message if check function returns false
+function showErrorMessageIfCheckFunctionReturnsFalse() {
+  if (isValid == true) {
+    formDataElement.setAttribute('data-error-visible', false);
+  } else {
+    formDataElement.setAttribute('data-error', "Veuillez entrer 2 caractères minimum");
+    formDataElement.setAttribute('data-error-visible', true);
+    return false;
+  }
+}
+
+// Check first name > 2 characters
+// function checkFirstName() {
+//   const firstNameInput = firstName.value;
+//   const formDataElement = formData[0];
+//   const isValid = regexFirstnameAndLastname.test(firstNameInput);
+//   if (isValid == true) {
+//     formDataElement.setAttribute('data-error-visible', false);
 //   } else {
-//     formPrenom.setAttribute('data-error-visible', false);
-//     //setCookie('Prénom', prenom.value, 1);
-//     return true;
-//   };
-// };
-
-
-// function displayErrorMessage(message) {
-//   errorMessageFirstName.textContent = message;
-//   errorMessageFirstName.classList.add("error-message-visible");
-//   first.setAttribute("data-error", "true");
-//   textControl.forEach((element) => {
-//     element.setAttribute("data-error", "true");
-//   });
+//     formDataElement.setAttribute('data-error', "Veuillez entrer 2 caractères minimum");
+//     formDataElement.setAttribute('data-error-visible', true);
+//     return false;
+//   }
+//   return isValid;
 // }
-
-// function clearErrorMessage() {
-//   errorMessageFirstName.textContent = "";
-//   first.parentElement.classList.remove("formData");
-//   first.removeAttribute("data-error");
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
