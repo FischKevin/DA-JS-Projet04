@@ -53,7 +53,9 @@ function disableSubmitButtonIfCheckbox1NotChecked() {
 // Function to initialize form fields
 function initForm() {
   checkbox1.checked = true;
-  disableSubmitButtonIfCheckbox1NotChecked();
+  for (let i = 0; i < formData.length; i++) {
+    formData[i].setAttribute('data-error-visible', false);
+  }
 }
 
 // Event listener creation for Modal Form Opener Button
@@ -89,51 +91,96 @@ function closeConfirmModal() {
 
 // -----------------------------------------------------------------
 
-// Function to validate the form
 function validate(e) {
   e.preventDefault();
-    if (checkFirstName() === true && 
-        checkLastName() === true && 
-        checkEmail() === true && 
-        checkQuantity() === true && 
-        checkBirthdate() === true && 
-        checkLocation() === true
-      ) {
-      console.log("Submit ok");
-      launchConfirmModal();
-    } else {
-      console.log("Submit ko");
+
+  let errorExists = false;
+  let isCheckboxChecked = true;
+
+  // Check every function's return. 
+  // If a return is false errorExists = true and an error message is diplayed 
+  if (!checkFirstName()) {
+    errorExists = true;
+    showErrorMessageIfCheckFunctionReturnsFalse(checkFirstName(), formData[0], "Veuillez entrer 2 caractères ou plus");
+  } else {
+    formData[0].setAttribute('data-error-visible', false);
+  }
+
+  if (!checkLastName()) {
+    showErrorMessageIfCheckFunctionReturnsFalse(checkLastName(), formData[1], "Veuillez entrer 2 caractères ou plus");
+    errorExists = true;
+  } else {
+    formData[1].setAttribute('data-error-visible', false);
+  }
+
+  if (!checkEmail()) {
+    showErrorMessageIfCheckFunctionReturnsFalse(checkEmail(), formData[2], "Veuillez entrer un email au bon format");
+    errorExists = true;
+  } else {
+    formData[2].setAttribute('data-error-visible', false);
+  }
+
+  if (!checkBirthdate()) {
+    showErrorMessageIfCheckFunctionReturnsFalse(checkBirthdate(), formData[3], "Veuillez entrer votre date de naissance");
+    errorExists = true;
+  } else {
+    formData[3].setAttribute('data-error-visible', false);
+  }
+
+  if (!checkQuantity()) {
+    showErrorMessageIfCheckFunctionReturnsFalse(checkQuantity(), formData[4], "Veuillez entrer une valeur numérique");
+    errorExists = true;
+  } else {
+    formData[4].setAttribute('data-error-visible', false);
+  }
+  
+  if (!checkLocation()) {
+    showErrorMessageIfCheckFunctionReturnsFalse(checkLocation(), formData[5], "Veuillez sélectionner une ville");
+    errorExists = true;
+  } else {
+    formData[5].setAttribute('data-error-visible', false);
+  }
+
+  if (!isCheckboxChecked) {
+    errorExists = true;
+    showErrorMessageIfCheckFunctionReturnsFalse(false, formData[6], "Vous devez accepter les conditions d'utilisation");
+  }
+
+  // If there are no error,submit the form and open the confirmation modal
+  if (!errorExists) {
+    console.log("Submit ok");
+    launchConfirmModal();
+  } else {
+    console.log("Submit ko");
   }
 }
 
-let isValid;
-let formDataElement;
-
 // Function to show error message if check function returns false
-function showErrorMessageIfCheckFunctionReturnsFalse() {
-  if (isValid == true) {
+function showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, errorMessage) {
+  if (isValid) {
     formDataElement.setAttribute('data-error-visible', false);
   } else {
-    formDataElement.setAttribute('data-error', "Veuillez entrer 2 caractères minimum");
+    formDataElement.setAttribute('data-error', errorMessage);
     formDataElement.setAttribute('data-error-visible', true);
-    return false;
   }
 }
 
 function checkFirstName() {
   const firstNameInput = firstName.value;
-  formDataElement = formData[0];
-  isValid = regexFirstnameAndLastname.test(firstNameInput);
-  showErrorMessageIfCheckFunctionReturnsFalse();
+  // const formDataElement = formData[0];
+  const isValid = regexFirstnameAndLastname.test(firstNameInput);
+  // const errorMessage = "Veuillez saisir 2 caractères minimum";
+  // showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, errorMessage);
   return isValid;
 }
 
 // Check last name > 2 characters
 function checkLastName() {
   const lastNameInput = lastName.value;
-  formDataElement = formData[1];
-  isValid = regexFirstnameAndLastname.test(lastNameInput);
-  showErrorMessageIfCheckFunctionReturnsFalse();
+  // const formDataElement = formData[1];
+  const isValid = regexFirstnameAndLastname.test(lastNameInput);
+  // const errorMessage = "Veuillez saisir 2 caractères minimum";
+  // showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, errorMessage);
   return isValid;
 }
 
