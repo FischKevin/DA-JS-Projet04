@@ -109,14 +109,6 @@ function validate(e) {
 let isValid;
 let formDataElement;
 
-function checkFirstName() {
-  const firstNameInput = firstName.value;
-  formDataElement = formData[0];
-  isValid = regexFirstnameAndLastname.test(firstNameInput);
-  showErrorMessageIfCheckFunctionReturnsFalse();
-  return isValid;
-}
-
 // Function to show error message if check function returns false
 function showErrorMessageIfCheckFunctionReturnsFalse() {
   if (isValid == true) {
@@ -128,20 +120,14 @@ function showErrorMessageIfCheckFunctionReturnsFalse() {
   }
 }
 
-// Check first name > 2 characters
-// function checkFirstName() {
-//   const firstNameInput = firstName.value;
-//   const formDataElement = formData[0];
-//   const isValid = regexFirstnameAndLastname.test(firstNameInput);
-//   if (isValid == true) {
-//     formDataElement.setAttribute('data-error-visible', false);
-//   } else {
-//     formDataElement.setAttribute('data-error', "Veuillez entrer 2 caractères minimum");
-//     formDataElement.setAttribute('data-error-visible', true);
-//     return false;
-//   }
-//   return isValid;
-// }
+function checkFirstName() {
+  const firstNameInput = firstName.value;
+  formDataElement = formData[0];
+  isValid = regexFirstnameAndLastname.test(firstNameInput);
+  showErrorMessageIfCheckFunctionReturnsFalse();
+  return isValid;
+}
+
 
 
 
