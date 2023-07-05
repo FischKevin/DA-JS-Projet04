@@ -99,54 +99,75 @@ function validate(e) {
 
   // Check every function's return. 
   // If a return is false errorExists = true and an error message is diplayed 
-  if (!checkFirstName()) {
-    errorExists = true;
-    showErrorMessageIfCheckFunctionReturnsFalse(checkFirstName(), formData[0], "Veuillez entrer 2 caractères ou plus");
-  } else {
-    formData[0].setAttribute('data-error-visible', false);
-  }
+  // if (!checkFirstName()) {
+  //   errorExists = true;
+  //   showErrorMessageIfCheckFunctionReturnsFalse(checkFirstName(), formData[0], "Veuillez entrer 2 caractères ou plus");
+  // } else {
+  //   formData[0].setAttribute('data-error-visible', false);
+  // }
 
-  if (!checkLastName()) {
-    showErrorMessageIfCheckFunctionReturnsFalse(checkLastName(), formData[1], "Veuillez entrer 2 caractères ou plus");
-    errorExists = true;
-  } else {
-    formData[1].setAttribute('data-error-visible', false);
-  }
+  // if (!checkLastName()) {
+  //   showErrorMessageIfCheckFunctionReturnsFalse(checkLastName(), formData[1], "Veuillez entrer 2 caractères ou plus");
+  //   errorExists = true;
+  // } else {
+  //   formData[1].setAttribute('data-error-visible', false);
+  // }
 
-  if (!checkEmail()) {
-    showErrorMessageIfCheckFunctionReturnsFalse(checkEmail(), formData[2], "Veuillez entrer un email au bon format");
-    errorExists = true;
-  } else {
-    formData[2].setAttribute('data-error-visible', false);
-  }
+  // if (!checkEmail()) {
+  //   showErrorMessageIfCheckFunctionReturnsFalse(checkEmail(), formData[2], "Veuillez entrer un email au bon format");
+  //   errorExists = true;
+  // } else {
+  //   formData[2].setAttribute('data-error-visible', false);
+  // }
 
-  if (!checkBirthdate()) {
-    showErrorMessageIfCheckFunctionReturnsFalse(checkBirthdate(), formData[3], "Veuillez entrer votre date de naissance");
-    errorExists = true;
-  } else {
-    formData[3].setAttribute('data-error-visible', false);
-  }
+  // if (!checkBirthdate()) {
+  //   showErrorMessageIfCheckFunctionReturnsFalse(checkBirthdate(), formData[3], "Veuillez entrer votre date de naissance");
+  //   errorExists = true;
+  // } else {
+  //   formData[3].setAttribute('data-error-visible', false);
+  // }
 
-  if (!checkQuantity()) {
-    showErrorMessageIfCheckFunctionReturnsFalse(checkQuantity(), formData[4], "Veuillez entrer une valeur numérique");
-    errorExists = true;
-  } else {
-    formData[4].setAttribute('data-error-visible', false);
-  }
+  // if (!checkQuantity()) {
+  //   showErrorMessageIfCheckFunctionReturnsFalse(checkQuantity(), formData[4], "Veuillez entrer une valeur numérique");
+  //   errorExists = true;
+  // } else {
+  //   formData[4].setAttribute('data-error-visible', false);
+  // }
 
-  if (!checkLocation()) {
-    showErrorMessageIfCheckFunctionReturnsFalse(checkLocation(), formData[5], "Veuillez sélectionner une ville");
-    errorExists = true;
-  } else {
-    formData[5].setAttribute('data-error-visible', false);
-  }
+  // if (!checkLocation()) {
+  //   showErrorMessageIfCheckFunctionReturnsFalse(checkLocation(), formData[5], "Veuillez sélectionner une ville");
+  //   errorExists = true;
+  // } else {
+  //   formData[5].setAttribute('data-error-visible', false);
+  // }
+
+  const validationData = [
+    { checkFunction: checkFirstName, errorMessage: "Veuillez entrer 2 caractères ou plus" },
+    { checkFunction: checkLastName, errorMessage: "Veuillez entrer 2 caractères ou plus" },
+    { checkFunction: checkEmail, errorMessage: "Veuillez entrer un email au bon format" },
+    { checkFunction: checkBirthdate, errorMessage: "Veuillez entrer votre date de naissance" },
+    { checkFunction: checkQuantity, errorMessage: "Veuillez entrer une valeur numérique" },
+    { checkFunction: checkLocation, errorMessage: "Veuillez sélectionner une ville" },
+  ];
+
+  validationData.forEach((data, index) => {
+    const isValid = data.checkFunction();
+    const formDataElement = formData[index];
+
+    if (!isValid) {
+      showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, data.errorMessage);
+      errorExists = true;
+    } else {
+      formDataElement.setAttribute('data-error-visible', false);
+    }
+  });
 
   if (!isCheckboxChecked) {
     errorExists = true;
     showErrorMessageIfCheckFunctionReturnsFalse(false, formData[6], "Vous devez accepter les conditions d'utilisation");
   }
 
-  // If there are no error,submit the form and open the confirmation modal
+  // If there is no error,submit the form and open the confirmation modal
   if (!errorExists) {
     console.log("Submit ok");
     launchConfirmModal();
