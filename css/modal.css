@@ -232,11 +232,12 @@ main {
   color: #fff;
   padding-top: 10px;
 }
-/* @media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .bground > .content {
-    height: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   } 
-} */
+}
 
 .modal-body {
   padding: 15px 8%;
@@ -575,6 +576,8 @@ input[data-error="true"]::after {
 @media screen and (max-width: 500px) {
   .bground-confirm > .content {
     height: 597px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   } 
 }
 
