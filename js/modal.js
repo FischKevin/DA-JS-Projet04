@@ -151,6 +151,7 @@ function showErrorMessageIfCheckFunctionReturnsFalse(isValid, formDataElement, e
   }
 }
 
+// Check first name > 2 characters
 function checkFirstName() {
   const firstNameInput = firstName.value;
   const isValid = regexFirstnameAndLastname.test(firstNameInput);
@@ -180,15 +181,4 @@ function checkQuantity() {
 function checkBirthdate() {
   const birthdateInput = birthdate.value;
   return regexBirthdateYYYMMDD.test(birthdateInput);
-}
-
-// Check location
-function checkLocation() {
-  const locationInput = document.getElementsByName("location");
-  for (let i = 0; i < locationInput.length; i++) {
-    if (locationInput[i].checked) {
-      return true; 
-    }
-  }
-  return false;
 }
