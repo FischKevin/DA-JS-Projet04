@@ -114,7 +114,6 @@ function validate(e) {
     { checkFunction: checkEmail, errorMessage: "Veuillez entrer un email au bon format" },
     { checkFunction: checkBirthdate, errorMessage: "Veuillez entrer votre date de naissance" },
     { checkFunction: checkQuantity, errorMessage: "Veuillez entrer une valeur numérique" },
-    { checkFunction: checkLocation, errorMessage: "Veuillez sélectionner une ville" },
   ];
 
   validationData.forEach((data, index) => {
